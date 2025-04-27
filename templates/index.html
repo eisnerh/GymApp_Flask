@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Bienvenido - Gimnasio App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Bienvenido al Sistema de Reservas del Gimnasio</h1>
+        <p class="lead mb-4">Sistema de gestión y reservas para el gimnasio</p>
+        
+        {% if current_user.is_authenticated %}
+            <div class="mb-4">
+                <h3>¡Hola, {{ current_user.nombre }}!</h3>
+                <p>Accede a tu panel de control para gestionar tus reservas.</p>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Ir al Panel de Control</a>
+            </div>
+        {% else %}
+            <div class="mb-4">
+                <p>Inicia sesión o regístrate para acceder al sistema de reservas.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesión</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-outline-secondary btn-lg px-4">Registrarse</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h3>Reserva tu Horario</h3>
+                <p>Selecciona el día y la hora que mejor se adapte a tu rutina.</p>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Hacer Reserva</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-primary">Inicia sesión para reservar</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h3>Gestión Simple</h3>
+                <p>Administra tus reservas de manera fácil y rápida.</p>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Ver mis reservas</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-primary">Inicia sesión para gestionar</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h3>Horarios Flexibles</h3>
+                <p>Consulta los horarios disponibles y planifica tu entrenamiento.</p>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Ver horarios</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-primary">Inicia sesión para ver horarios</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
